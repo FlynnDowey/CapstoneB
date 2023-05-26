@@ -1,1 +1,1 @@
-# CapstoneB
+# CapstoneB: tutorials
