@@ -15,8 +15,8 @@ Before getting started, ensure that you have the following:
 Follow these steps:
 
 1. Create a working directory
-
+```
 $ mkdir -p ~/catkin_ws/src
 $ cd ~/catkin_ws/
 $ catkin_make
-
+```
