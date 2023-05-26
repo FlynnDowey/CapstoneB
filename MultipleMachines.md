@@ -1,19 +1,16 @@
-# My Project Documentation
+# Connecting ROS between two machines
 
 ## Introduction
 
-This document provides instructions for executing code blocks in the project.
+This document provides instructions for connecting ros between multiple machines.
 
 ## Prerequisites
 
-Before getting started, ensure that you have the following:
-
-- Python 3.6 or higher installed
-- Required libraries (e.g., numpy, pandas)
+N/A
 
 ## Code Execution
 
-Follow these steps to execute the code blocks:
+Follow these steps:
 
 1. Clone the project repository:
 
