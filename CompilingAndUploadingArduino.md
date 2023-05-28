@@ -14,8 +14,16 @@ Before getting started, ensure that you have the following:
 
 Follow the installation instructions found here: https://arduino.github.io/arduino-cli/0.32/installation/ and set up the arduino enviroment 
 from this link: https://arduino.github.io/arduino-cli/0.32/getting-started/
+
+## Uploading and Compiling Sketches
+
+You can either use the uploaded bash script or use the following commmands:
+
+1. compile the sketch
 ```
-3. Ensure ROS_PACKAGE_PATH has your working directory
+arduino-cli compile --fqbn arduino:avr:leonardo MySketch
 ```
-echo $ROS_PACKAGE_PATH
+2. upload the sketch
+```
+arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:leonardo MySketch
 ```
