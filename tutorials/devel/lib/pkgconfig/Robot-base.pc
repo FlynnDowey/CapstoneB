@@ -1,0 +1,8 @@
+prefix=/home/flynn/capstoneB/tutorials/devel
+
+Name: Robot-base
+Description: Description of Robot-base
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

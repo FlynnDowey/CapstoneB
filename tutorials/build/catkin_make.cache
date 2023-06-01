@@ -1,0 +1,2 @@
+Robot_Base:robot_2dnav:robot_frames:robot_odom:rplidar_ros:ultrasonic
+-DCATKIN_DEVEL_PREFIX=/home/flynn/capstoneB/tutorials/devel -DCMAKE_INSTALL_PREFIX=/home/flynn/capstoneB/tutorials/install -G Unix Makefiles

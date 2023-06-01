@@ -1,0 +1,8 @@
+prefix=/home/flynn/capstoneB/tutorials/install
+
+Name: robot_frames
+Description: Description of robot_frames
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

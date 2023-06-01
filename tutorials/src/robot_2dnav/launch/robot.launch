@@ -1,0 +1,12 @@
+<launch>
+   <!-- <node pkg="rplidar_ros" type="rplidarNode" name="rplidarNode" output="screen">
+   </node> -->
+
+   <node pkg="robot_odom" type="robot_odom" name="odometry_publisher" output="screen">
+   </node>
+
+   <node pkg="robot_frames" type="static_transforms.py" name="static_transforms" output="screen">
+   </node>
+    
+   <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop" output="screen"/>
+</launch> 
