@@ -8,4 +8,4 @@
 
 [Using an arduino-cli](CompilingAndUploadingArduino.md)
 
-Tutorial for Gary: [Simulation fix needed](Gazebo_tutorial.md)
+Tutorial for Gary (__UPDATED__): [Simulation fix needed](Gazebo_tutorial.md)
