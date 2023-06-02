@@ -33,6 +33,8 @@ rosrun robot_frames <spam tab until you get a .py file>
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
 
+Here is a possibly useful link to urdf tutorials [https://wiki.ros.org/urdf/Tutorials](https://wiki.ros.org/urdf/Tutorials)
+
 ## Requirements
 
 1. You should fix the urdf file so that the model is physically correct.
