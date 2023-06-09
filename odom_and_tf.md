@@ -29,8 +29,7 @@ What needs to be done:
 
 - publish encoder data as odom data.
 - ensure the error between the odom and map is minimal. 
-- find a way to speed up connection from arduino to ros; Steven looked into this and I will attach a [link]() to the code he gave me, it might be a good starting point. 
-- 
+- find a way to speed up connection from arduino to ros; Steven looked into this and I will attach a [link1](rotary_encoder.py) [link2](encoders_4.py) to the code he gave me, it might be a good starting point.
 
 ## Resources
 1. ROS wiki on odometry [https://wiki.ros.org/navigation/Tutorials/RobotSetup/Odom](https://wiki.ros.org/navigation/Tutorials/RobotSetup/Odom) - this is the code you need to work with.
