@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="robot_base">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0192056085506799 -1.0019728196089E-07 -0.0207231825340821"
+        rpy="0 0 0" />
+      <mass
+        value="0.70548109161444" />
+      <inertia
+        ixx="0.00103698481765696"
+        ixy="-1.34543080302355E-09"
+        ixz="2.72157307652663E-09"
+        iyy="0.00356344087718046"
+        iyz="-1.89747686139541E-09"
+        izz="0.00435181395350258" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_base/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_base/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+	  <link
+	    name="front_right_wheel">
+	    <inertial>
+	      <origin
+		xyz="1.01261039830991E-08 -0.00102832692869792 5.99785373103789E-09"
+		rpy="0 0 0" />
+	      <mass
+		value="0.0906504319780975" />
+	      <inertia
+		ixx="1.42717805521517E-05"
+		ixy="-1.42660302928494E-12"
+		ixz="-1.52048257555512E-13"
+		iyy="1.89862745993452E-05"
+		iyz="1.79755609332908E-13"
+		izz="1.42717668961945E-05" />
+	    </inertial>
+	    <visual>
+	      <origin
+		xyz="0 0 0"
+		rpy="0 0 0" />
+	      <geometry>
+		<mesh
+		  filename="package://robot_base/meshes/front_right_wheel.STL" />
+	      </geometry>
+	      <material
+		name="">
+		<color
+		  rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+	      </material>
+	    </visual>
+	    <collision>
+	      <origin
+		xyz="0 0 0"
+		rpy="0 0 0" />
+	      <geometry>
+		<mesh
+		  filename="package://robot_base/meshes/front_right_wheel.STL" />
+	      </geometry>
+	    </collision>
+	  </link>
+	  <joint
+	    name="front_right_wheel_joint"
+	    type="continuous">
+	    <origin
+	      xyz="0.168 -0.20013422253883 -0.024"
+	      rpy="0 0 0" />
+	    <parent
+	      link="base_link" />
+	    <child
+	      link="front_right_wheel" />
+	    <axis
+	      xyz="0 -1 0" />
+	  </joint>
+	  <link
+	    name="rear_left_wheel">
+	    <inertial>
+	      <origin
+		xyz="-1.10308263912007E-08 0.00102833020743179 -4.10287070290449E-09"
+		rpy="0 0 0" />
+	      <mass
+		value="0.0906503714634197" />
+	      <inertia
+		ixx="1.42718106513493E-05"
+		ixy="-7.57187836564414E-13"
+		ixz="-6.72355782033758E-12"
+		iyy="1.89862970946893E-05"
+		iyz="-1.22255275294922E-12"
+		izz="1.4271804081329E-05" />
+	    </inertial>
+	    <visual>
+	      <origin
+		xyz="0 0 0"
+		rpy="0 0 0" />
+	      <geometry>
+		<mesh
+		  filename="package://robot_base/meshes/rear_left_wheel.STL" />
+	      </geometry>
+	      <material
+		name="">
+		<color
+		  rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+	      </material>
+	    </visual>
+	    <collision>
+	      <origin
+		xyz="0 0 0"
+		rpy="0 0 0" />
+	      <geometry>
+		<mesh
+		  filename="package://robot_base/meshes/rear_left_wheel.STL" />
+	      </geometry>
+	    </collision>
+	  </link>
+	  <joint
+	    name="rear_left_wheel_joint"
+	    type="continuous">
+	    <origin
+	      xyz="-0.168 0.20013422253883 -0.024"
+	      rpy="0 0 0" />
+	    <parent
+	      link="base_link" />
+	    <child
+	      link="rear_left_wheel" />
+	    <axis
+	      xyz="0 -1 0" />
+	  </joint>
+	  <link
+	    name="front_left_wheel">
+	    <inertial>
+	      <origin
+		xyz="-4.08346823993488E-07 -0.00022312807796801 -2.65063015652406E-06"
+		rpy="0 0 0" />
+	      <mass
+		value="0.0907062547326848" />
+	      <inertia
+		ixx="1.42718650140961E-05"
+		ixy="-7.84049327786009E-13"
+		ixz="4.1513484675609E-12"
+		iyy="1.89866263274582E-05"
+		iyz="-2.39202969164756E-12"
+		izz="1.42718754217958E-05" />
+	    </inertial>
+	    <visual>
+	      <origin
+		xyz="0 0 0"
+		rpy="0 0 0" />
+	      <geometry>
+		<mesh
+		  filename="package://robot_base/meshes/front_left_wheel.STL" />
+	      </geometry>
+	      <material
+		name="">
+		<color
+		  rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+	      </material>
+	    </visual>
+	    <collision>
+	      <origin
+		xyz="0 0 0"
+		rpy="0 0 0" />
+	      <geometry>
+		<mesh
+		  filename="package://robot_base/meshes/front_left_wheel.STL" />
+	      </geometry>
+	    </collision>
+	  </link>
+	  <joint
+	    name="front_left_wheel_joint"
+	    type="continuous">
+	    <origin
+	      xyz="0.168 0.201392465761815 -0.024"
+	      rpy="0 0 0" />
+	    <parent
+	      link="base_link" />
+	    <child
+	      link="front_left_wheel" />
+	    <axis
+	      xyz="0 -1 0" />
+	  </joint>
+	  <link
+	    name="rear_right_wheel">
+	    <inertial>
+	      <origin
+		xyz="-2.46213631646675E-06 0.000223131630658763 1.06325057636775E-06"
+		rpy="0 0 0" />
+	      <mass
+		value="0.090706182564683" />
+	      <inertia
+		ixx="1.42719014658786E-05"
+		ixy="2.44290222447614E-12"
+		ixz="9.76825264607075E-12"
+		iyy="1.89866541464278E-05"
+		iyz="-6.07501839518965E-13"
+		izz="1.42719261520234E-05" />
+	    </inertial>
+	    <visual>
+	      <origin
+		xyz="0 0 0"
+		rpy="0 0 0" />
+	      <geometry>
+		<mesh
+		  filename="package://robot_base/meshes/rear_right_wheel.STL" />
+	      </geometry>
+	      <material
+		name="">
+		<color
+		  rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+	      </material>
+	    </visual>
+	    <collision>
+	      <origin
+		xyz="0 0 0"
+		rpy="0 0 0" />
+	      <geometry>
+		<mesh
+		  filename="package://robot_base/meshes/rear_right_wheel.STL" />
+	      </geometry>
+	    </collision>
+	  </link>
+	  <joint
+	    name="rear_right_wheel_joint"
+	    type="continuous">
+	    <origin
+	      xyz="-0.168 -0.201392465761815 -0.024"
+	      rpy="0 0 0" />
+	    <parent
+	      link="base_link" />
+	    <child
+	      link="rear_right_wheel" />
+	    <axis
+	      xyz="0 -1 0" />
+	  </joint>
+	
+
+
+	<link name="laser_link">
+	<visual>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		<cylinder length="0.02" radius="0.05"/>
+		</geometry>
+		<material name="Blue" />
+	</visual>
+	</link>
+
+	<joint name="base_laser_joint" type="fixed">
+	<origin xyz="0 0 0.08" rpy="0 0 0" />
+	<parent link="base_link"/>
+	<child link="laser_link" />
+	</joint>
+
+	<gazebo reference="laser_link">
+	<material>Gazebo/Blue</material>
+	<turnGravityOff>false</turnGravityOff>
+	<sensor type="ray" name="laser_sensor">
+		<pose>0 0 0 0 0 0</pose>
+		<visualize>true</visualize>
+		<update_rate>100</update_rate>
+		<ray>
+		<scan>
+			<horizontal>
+			<samples>720</samples>
+			<resolution>1</resolution>
+			<min_angle>-1.570796</min_angle>
+			<max_angle>4.71239</max_angle>
+			</horizontal>
+		</scan>
+		<range>
+			<min>0.10</min>
+			<max>100.0</max>
+			<resolution>0.001</resolution>
+		</range>
+		</ray>
+		<plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+		<topicName>/scan</topicName>
+		<frameName>laser_link</frameName>
+		</plugin>
+	</sensor>
+	</gazebo>
+
+	  
+	  
+  <!-- PLANAR PLUGIN-->
+  <gazebo>
+    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>	
+      <odometryRate>20.0</odometryRate>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
+  <!-- KINECT PLUGIN
+  <gazebo reference="base_link">
+  <sensor name="base_link_camera" type="depth">
+    <update_rate>20</update_rate>
+    <camera>
+      <horizontal_fov>1.047198</horizontal_fov>
+      <image>
+        <width>640</width>
+        <height>480</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.05</near>
+        <far>3</far>
+      </clip>
+    </camera>
+    <plugin name="base_link_controller" filename="libgazebo_ros_openni_kinect.so">
+      <baseline>0.2</baseline>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>1.0</updateRate>
+      <cameraName>kinect_ir</cameraName>
+      <imageTopicName>/kinect/color/image_raw</imageTopicName>
+      <cameraInfoTopicName>/kinect/color/camera_info</cameraInfoTopicName>
+      <depthImageTopicName>/kinect/depth/image_raw</depthImageTopicName>
+      <depthImageInfoTopicName>/kinect/depth/camera_info</depthImageInfoTopicName>
+      <pointCloudTopicName>/kinect/depth/points</pointCloudTopicName>
+      <frameName>kinect_frame</frameName>
+      <pointCloudCutoff>0.5</pointCloudCutoff>
+      <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+      <distortionK1>0.00000001</distortionK1>
+      <distortionK2>0.00000001</distortionK2>
+      <distortionK3>0.00000001</distortionK3>
+      <distortionT1>0.00000001</distortionT1>
+      <distortionT2>0.00000001</distortionT2>
+      <CxPrime>0</CxPrime>
+      <Cx>0</Cx>
+      <Cy>0</Cy>
+      <focalLength>0</focalLength>
+      <hackBaseline>0</hackBaseline>
+    </plugin>
+  </sensor>
+  </gazebo> -->
+
+  <!-- LIDAR PLUGIN --> 
+
+  <!-- hokuyo -->
+<gazebo reference="hokuyo_link">
+	<sensor type="gpu_ray" name="head_hokuyo_sensor">
+	<pose>0 0 0 0 0 0</pose>
+	<visualize>false</visualize>
+	<update_rate>40</update_rate>
+	<ray>
+		<scan>
+		<horizontal>
+			<samples>720</samples>
+			<resolution>1</resolution>
+			<min_angle>-1.570796</min_angle>
+			<max_angle>1.570796</max_angle>
+		</horizontal>
+		</scan>
+		<range>
+		<min>0.10</min>
+		<max>30.0</max>
+		<resolution>0.01</resolution>
+		</range>
+		<noise>
+		<type>gaussian</type>
+		<mean>0.0</mean>
+		<stddev>0.01</stddev>
+		</noise>
+	</ray>
+	<plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
+		<topicName>/rrbot/laser/scan</topicName>
+		<frameName>hokuyo_link</frameName>
+	</plugin>
+	</sensor>
+</gazebo>
+	  
+</robot>
+
+
