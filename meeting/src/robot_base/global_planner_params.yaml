@@ -1,0 +1,19 @@
+# Global planner configuration
+GlobalPlanner:
+  allow_unknown: true  # Allow navigation in areas with unknown space
+  old_navfn_behavior: false  # Use the old behavior of the navfn planner
+  default_tolerance: 0.5  # Default tolerance for goal reaching (m)
+  use_dijkstra: true  # Use Dijkstra's algorithm for global planning
+  use_quadratic: false  # Use quadratic approximation for costs
+  use_grid_path: true  # Use grid path for costs
+  recovery_behavior_enabled: true
+  recovery_behavior_timeout: 10.0
+  recovery_behavior_attempts: 10
+  recovery_behavior_cost_scale: 1.5 #A higher causing the robot to explore alternative paths more aggressively.
+  recovery_behavior_obstacle_cost_weight: 50.0 #A higher value emphasizes the importance of reaching the goal quickly during recovery.
+  cost_factor: 0.55
+  neutral_cost: 60
+
+# ALS specific parameters
+als_distance_scale: 5.0  # Distance scaling factor for ALS global planner
+
