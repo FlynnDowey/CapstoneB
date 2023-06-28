@@ -1,48 +1,55 @@
-#define USE_USBCON
-#include <ros.h>  
-#include <std_msgs/UInt64.h>  
-ros::NodeHandle nh;  
-std_msgs::UInt64 distanceros;  
-ros::Publisher ultrasonic("ultrasonic", &distanceros);  
-  
-const int trigger = 9;  
-const int echo = 10;  
- 
-// defines variables  
-long duration;  
-int dist;  
+const int trigger_l = 4;
+const int echo_l = 5;
 
-void setup() { 
-  pinMode(LED_BUILTIN, OUTPUT); 
-  pinMode(trigger, OUTPUT); // Sets the trigPin as an Output  
-  pinMode(echo, INPUT); // Sets the echoPin as an Input  
-  Serial.begin() //You need to configure the serial communication between the Arduino and Raspberry Pi properly, ensuring that the messages are transmitted and received correctly.n(9600); // Starts the serial communication  
-  nh.initNode();  
-  nh.advertise(ultrasonic);  
-}  
- 
-void loop() {   
-// Clears the trigPin  
-  digitalWrite(trigger, LOW);  
-  delayMicroseconds(2);    
+const int trigger_r;
+const int echo_r;
 
-// Sets the trigPin on HIGH state for 10 micro seconds  
-  digitalWrite(trigger, HIGH);  
-  delayMicroseconds(10);  
-  digitalWrite(trigger, LOW);  
+const int trigger_b;
+const int echo_b;
 
-// returns the sound wave travel time in microseconds  
-  duration = pulseIn(echo, HIGH);//works on pulses from 10 microseconds to 3 minutes in length  
 
-// Getting the distance  
-  dist = duration*0.034/2;  
+long timeElapsed_l = 0;
+long timeElapsed_r = 0;
+long timeElapsed_b = 0;
+float distance_l = 0;
+float distance_r = 0;
+float distance_b = 0;
 
-  distanceros.data = dist;  
-  ultrasonic.publish(&distanceros);  
-  nh.spinOnce();  
-  delay(1);
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(1000);
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(1000);  
-}  
+void setup() {
+    pinMode(trigger_l, OUTPUT);
+    pinMode(echo_r, INPUT);
+    Serial.begin(115200);
+}
+
+void loop() {
+    // Clear trigger
+    digitalWrite(trigger_l,LOW);
+    delayMicroseconds(2);
+
+    // send 10 microseond trigger
+    digitalWrite(trigger_l, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigger_l, LOW);
+
+    // time to get echo
+    timeElapsed_l = pulseIn(echo_l, HIGH);
+    timeElapsed_r = pulseIn(echo_r, HIGH);
+    timeElapsed_b = pulseIn(echo_b, HIGH);
+
+    // convert time to distance
+    // Divide by 1000000 (convert microseconds to seconds)
+    // Divide by 2 for distance there and back
+    // Multiply by speed of sound 34300cm/s
+    distance_l = (float)timeElapsed_l / 1000000 / 2 * 34300; // in cm
+    distance_r = 0;
+    distance_b = 0;
+
+    Serial.print(distance_l);
+    Serial.print(',');
+    Serial.print(distance_r);
+    Serial.print(',');
+    Serial.print(distance_b);
+    Serial.print('\n');
+
+    delay(500);
+}
