@@ -12,10 +12,10 @@
 // --------------- For ROS ---------------------
 ros::NodeHandle nh;
 
-std_msgs::Int32 encoder0_msg;
-std_msgs::Int32 encoder1_msg;
-std_msgs::Int32 encoder2_msg;
-std_msgs::Int32 encoder3_msg;
+std_msgs::Float64 encoder0_msg;
+std_msgs::Float64 encoder1_msg;
+std_msgs::Float64 encoder2_msg;
+std_msgs::Float64 encoder3_msg;
 ros::Publisher encoder0_pub("encoder0", &encoder0_msg);
 ros::Publisher encoder1_pub("encoder1", &encoder1_msg);
 ros::Publisher encoder2_pub("encoder2", &encoder2_msg);
@@ -43,10 +43,10 @@ void cmd_vel_callback(const geometry_msgs::Twist& msg) {
   double angular_z = (double)msg.angular.z;
 
   // Calculate wheel velocities... no idea if this is correct
-  wheel1_velocity = (1 / R) * (linear_x - linear_y + (L * angular_z));
+  wheel1_velocity = (1 / R) * (linear_x - linear_y - (L * angular_z));
   wheel2_velocity = (1 / R) * (linear_x + linear_y + (L * angular_z));
   wheel3_velocity = (1 / R) * (linear_x + linear_y - (L * angular_z));
-  wheel4_velocity = (1 / R) * (linear_x - linear_y - (L * angular_z));
+  wheel4_velocity = (1 / R) * (linear_x - linear_y + (L * angular_z));
 
 }
 
