@@ -16,7 +16,7 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT); 
   pinMode(trigger, OUTPUT); // Sets the trigPin as an Output  
   pinMode(echo, INPUT); // Sets the echoPin as an Input  
-  Serial.begiYou need to configure the serial communication between the Arduino and Raspberry Pi properly, ensuring that the messages are transmitted and received correctly.n(9600); // Starts the serial communication  
+  Serial.begin() //You need to configure the serial communication between the Arduino and Raspberry Pi properly, ensuring that the messages are transmitted and received correctly.n(9600); // Starts the serial communication  
   nh.initNode();  
   nh.advertise(ultrasonic);  
 }  

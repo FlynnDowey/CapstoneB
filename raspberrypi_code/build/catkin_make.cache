@@ -1,0 +1,2 @@
+ultrasonic
+-DCATKIN_DEVEL_PREFIX=/home/steven/CapstoneB/raspberrypi_code/devel -DCMAKE_INSTALL_PREFIX=/home/steven/CapstoneB/raspberrypi_code/install -G Unix Makefiles
