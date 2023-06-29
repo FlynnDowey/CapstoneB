@@ -2,72 +2,69 @@
 
 import rospy
 from geometry_msgs.msg import Twist
+from sensor_msgs.msg import Range
 import serial
 
-class ObstacleAvoidanceNode:
-    def __init__(self):
-        rospy.init_node('ultrasonic_listener')
+rospy.init_node('ultrasonic_listener')
 
-        # Serial communication settings
-        self.serial_port = '/dev/ttyACM0'  # Update with the correct serial port
-        self.baud_rate = 115200
+# Serial communication settings
+serial_port = '/dev/ttyACM0'  # Update with the correct serial port
+baud_rate = 115200
 
-        # Obstacle detection threshold
-        self.distance_threshold = 20  # Threshold distance for obstacle detection in cm
+# Create a publisher for the /cmd_vel topic
+pub_l = rospy.Publisher('/ultrasonic_l', Twist, queue_size=10)
+pub_r = rospy.Publisher('/ultrasonic_r', Twist, queue_size=10)
+pub_b = rospy.Publisher('/ultrasonic_b', Twist, queue_size=10)
 
-        # Velocity commands for slowing down the robot
-        self.linear_velocity = 0.2  # Adjust as needed
-        self.angular_velocity = 0.1  # Adjust as needed
-        
-        # Create a publisher for the /cmd_vel topic
-        self.cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
+# Open the serial port for communication with Arduino
+ser = serial.Serial(serial_port, baud_rate)
 
-    def start_node(self):
-        rospy.spin()
+# Initialize Range messages
+range_l_msg = Range()
+range_r_msg = Range()
+range_b_msg = Range()
 
-    def main(self):
-        # Open the serial port for communication with Arduino
-        ser = serial.Serial(self.serial_port, self.baud_rate)
+# Set common fields for Range messages
+header = rospy.Header()
+header.frame_id = 'ultrasonic_sensor'
 
-        # Start the ROS node
-        self.start_node()
+range_min = 0.2  # Replace with the minimum range value of your ultrasonic sensor
+range_max = 4.0  # Replace with the maximum range value of your ultrasonic sensor
 
-        # Read and process serial data
-        while not rospy.is_shutdown():
-            if ser.in_waiting > 0:
-                line = ser.readline().decode().strip()
-                distances = line.split(',')
+range_l_msg.radiation_type = Range.ULTRASOUND
+range_l_msg.field_of_view = 0.1  # Replace with the field of view of your ultrasonic sensor
+range_l_msg.min_range = range_min
+range_l_msg.max_range = range_max
+range_l_msg.header = header
 
-                if len(distances) == 3:
-                    try:
-                        left_distance = float(distances[0])
-                        right_distance = float(distances[1])
-                        back_distance = float(distances[2])
+range_r_msg.radiation_type = Range.ULTRASOUND
+range_r_msg.field_of_view = 0.1  # Replace with the field of view of your ultrasonic sensor
+range_r_msg.min_range = range_min
+range_r_msg.max_range = range_max
+range_r_msg.header = header
 
-                        # Check if obstacle is too close
-                        if (
-                            left_distance <= self.distance_threshold
-                            or right_distance <= self.distance_threshold
-                            or back_distance <= self.distance_threshold
-                        ):
-                            #rospy.logwarn("Obstacle detected! Changing robot speed.")
+range_b_msg.radiation_type = Range.ULTRASOUND
+range_b_msg.field_of_view = 0.1  # Replace with the field of view of your ultrasonic sensor
+range_b_msg.min_range = range_min
+range_b_msg.max_range = range_max
+range_b_msg.header = header
 
-                            # Create a modified Twist message to slow down the robot
-                            modified_twist = Twist()
-                            modified_twist.linear.x = self.linear_velocity
-                            modified_twist.angular.z = self.angular_velocity
+# Read and process serial data
+while not rospy.is_shutdown():
+    if ser.in_waiting > 0:
+        line = ser.readline().decode().strip()
+        distances = line.split(',')
 
-                            # Publish the modified Twist message to the /cmd_vel topic
-                            self.cmd_vel_pub.publish(modified_twist)
-                    
-                    except ValueError:
-                        rospy.logerr("Error parsing distance values: %s", line)
-                else:
-                    rospy.logerr("Invalid number of distance values: %s", line)
+        if len(distances) == 3:
+            # Update Range messages with new measurements
+            range_l_msg.range = float(distances[0])
+            range_r_msg.range = float(distances[1])
+            range_b_msg.range = float(distances[2])
 
-if __name__ == '__main__':
-    try:
-        node = ObstacleAvoidanceNode()
-        node.main()
-    except rospy.ROSInterruptException:
-        pass
+            # Publish Range messages
+            pub_l.publish(range_l_msg)
+            pub_r.publish(range_r_msg)
+            pub_b.publish(range_b_msg)
+    rospy.sleep(0.1)
+
+ser.close()
