@@ -33,4 +33,10 @@ if __name__ == "__main__":
         # kinect_frame -> base_link
         broadcaster.sendTransform(*make_transform([0, 0, 0.024, 0, 0, 0]), current_time, "laser_frame", "base_link")
 
+        # ultrasonic_l_frame -> base FIX THE POSE
+        broadcaster.sendTransform(*make_transform([0, 0.2000, 0.024, 0, 0, 1.5708]), current_time, "ultrasonic_l_frame", "base_link")
+        # ultrasonic_r_frame -> base FIX THE POSE
+        broadcaster.sendTransform(*make_transform([0, -0.2000, 0.024, 0, 0, 4.7124]), current_time, "ultrasonic_r_frame", "base_link")
+        # ultrasonic_b_frame -> base FIX THE POSE
+        broadcaster.sendTransform(*make_transform([-0.216, 0, 0.024, 0, 0, 3.1416]), current_time, "ultrasonic_b_frame", "base_link")
         rate.sleep()
