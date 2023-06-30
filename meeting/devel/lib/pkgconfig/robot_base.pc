@@ -1,8 +1,0 @@
-prefix=/home/ubuntu/CapstoneB/meeting/devel
-
-Name: robot_base
-Description: Description of robot_base
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

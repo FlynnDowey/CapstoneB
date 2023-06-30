@@ -1,8 +1,0 @@
-prefix=/home/ubuntu/CapstoneB/meeting/devel
-
-Name: robot_2dnav
-Description: Description of robot_2dnav
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

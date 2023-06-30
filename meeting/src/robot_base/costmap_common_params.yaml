@@ -1,8 +1,0 @@
-# Common costmap configuration
-obstacle_range: 4.0  # Maximum range for considering obstacles (m)
-raytrace_range: 3.0  # Maximum range for raytracing (m)
-transform_tolerance: 0.5  # Transform tolerance for the costmap (s)
-resolution: 0.1 # Resolution of the costmap (m/cell)
-
-# ALS specific parameters
-als_distance_scale: 5.0  # Distance scaling factor for ALS costmap common

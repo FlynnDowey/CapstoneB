@@ -1,2 +1,0 @@
-als_ros:robot_2dnav:robot_base:robot_frames:robot_odom:rqt_tf_tree
--DCATKIN_DEVEL_PREFIX=/home/ubuntu/CapstoneB/meeting/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/CapstoneB/meeting/install -G Unix Makefiles
