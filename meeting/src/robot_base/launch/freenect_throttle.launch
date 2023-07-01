@@ -1,7 +1,0 @@
-<launch>
-    <node pkg="rtabmap_sync" type="rgbd_sync" name="rgbd_sync" output="screen">
-        <remap from="rgb/image" to="/kinect/color/image_raw"/>
-        <remap from="depth/image" to="/kinect/depth/image_raw"/>
-        <remap from="rgb/camera_info" to="/kinect/color/camera_info"/>
-    </node>
-</launch>
