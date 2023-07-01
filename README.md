@@ -14,7 +14,7 @@ Remaining items to complete:
 3. Implement and test on the robot.
 4. Add IMU + ROS drivers
 5. Add ultrasound to [costmap](meeting/src/robot_navigation/param/costmap_common_params.yaml) 
-6. Wifi stuff ad power??
+6. Wifi stuff and power??
 
 You need to download turtlebot3 to use the simulation, it can be downloaded using
 ```
