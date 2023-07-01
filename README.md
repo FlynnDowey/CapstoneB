@@ -24,3 +24,4 @@ To run the navigation stack, simply run:
 ```
 roslaunch robot_navigation healthbot_navigation localization:=true
 ```
+Also you need a copy of the meshes for robot_base as they are too large to push.
