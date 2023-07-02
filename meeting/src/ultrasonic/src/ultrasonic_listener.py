@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import rospy
-from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Range
 import serial
 
@@ -12,9 +11,9 @@ serial_port = '/dev/ttyACM0'  # Update with the correct serial port
 baud_rate = 115200
 
 # Create a publisher for the /cmd_vel topic
-pub_l = rospy.Publisher('/ultrasonic_l', Twist, queue_size=10)
-pub_r = rospy.Publisher('/ultrasonic_r', Twist, queue_size=10)
-pub_b = rospy.Publisher('/ultrasonic_b', Twist, queue_size=10)
+pub_l = rospy.Publisher('/ultrasonic_l', Range, queue_size=10)
+pub_r = rospy.Publisher('/ultrasonic_r', Range, queue_size=10)
+pub_b = rospy.Publisher('/ultrasonic_b', Range, queue_size=10)
 
 # Open the serial port for communication with Arduino
 ser = serial.Serial(serial_port, baud_rate)
