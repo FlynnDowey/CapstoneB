@@ -18,7 +18,7 @@
   </material>
   <link name="base_footprint"/>
   <joint name="base_link_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0.05"/>
+    <origin rpy="0 0 0" xyz="0 0 0.07"/>
     <parent link="base_footprint"/>
     <child link="base_link"/>
   </joint>
@@ -44,7 +44,7 @@
     </inertial>
   </link>
 
-  <link name="kinect_camera_link">
+  <link name="camera_link">
     <inertial>
       <mass value="0.1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -66,12 +66,12 @@
   
   <joint name="kinect_camera_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="kinect_camera_link"/>
-    <origin xyz="0 0 0.3" rpy="0 0 0"/>
+    <child link="camera_link"/>
+    <origin xyz="0.27 0 0.1" rpy="0 0 0"/>
   </joint>
 
   <joint name="upper_left_wheel_shaft_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.150 0.108 0.0"/>
+    <origin rpy="0 0 0" xyz="0.20 0.17 -0.115"/>
     <parent link="base_link"/>
     <child link="upper_left_wheel_shaft"/>
   </joint>
@@ -96,7 +96,7 @@
     </inertial>
   </link>
   <joint name="lower_left_wheel_shaft_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="-0.150 0.108 0.0"/>
+    <origin rpy="0 0 0" xyz="-0.145 0.17 -0.115"/>
     <parent link="base_link"/>
     <child link="lower_left_wheel_shaft"/>
   </joint>
@@ -121,7 +121,7 @@
     </inertial>
   </link>
   <joint name="upper_right_wheel_shaft_joint" type="fixed">
-    <origin rpy="3.14159265359 0 0" xyz="0.150 -0.108 0.0"/>
+    <origin rpy="3.14159265359 0 0" xyz="0.20 -0.17 -0.115"/>
     <parent link="base_link"/>
     <child link="upper_right_wheel_shaft"/>
   </joint>
@@ -146,7 +146,7 @@
     </inertial>
   </link>
   <joint name="lower_right_wheel_shaft_joint" type="fixed">
-    <origin rpy="3.14159265359 0 0" xyz="-0.150 -0.108 0.0"/>
+    <origin rpy="3.14159265359 0 0" xyz="-0.145 -0.17 -0.115"/>
     <parent link="base_link"/>
     <child link="lower_right_wheel_shaft"/>
   </joint>
@@ -279,7 +279,7 @@
     </inertial>
   </link>
   <joint name="left_sensor_joint" type="fixed">
-    <origin rpy="0 0 1.57079632679" xyz="0 0.108 0.010"/>
+    <origin rpy="0 0 1.57079632679" xyz="0 0.175 -0.025"/>
     <parent link="base_link"/>
     <child link="left_sensor"/>
   </joint>
@@ -293,7 +293,7 @@
     </visual>
   </link>
   <joint name="front_sensor_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.205 0 0.010"/>
+    <origin rpy="0 0 0" xyz="0.39 0 0.0"/>
     <parent link="base_link"/>
     <child link="front_sensor"/>
   </joint>
@@ -307,7 +307,7 @@
     </visual>
   </link>
   <joint name="right_sensor_joint" type="fixed">
-    <origin rpy="0 0 -1.57079632679" xyz="0 -0.108 0.010"/>
+    <origin rpy="0 0 -1.57079632679" xyz="0 -0.175 -0.025"/>
     <parent link="base_link"/>
     <child link="right_sensor"/>
   </joint>
@@ -321,7 +321,7 @@
     </visual>
   </link>
   <joint name="rear_sensor_joint" type="fixed">
-    <origin rpy="0 0 3.14159265359" xyz="-0.201 0 0.010"/>
+    <origin rpy="0 0 3.14159265359" xyz="-0.22 0 -0.025"/>
     <parent link="base_link"/>
     <child link="rear_sensor"/>
   </joint>
@@ -338,7 +338,7 @@
 	  
 	  
 	<!-- copy the following  -->
-	<link name="laser_link">
+	<link name="laser">
 	<visual>
 		<origin xyz="0 0 0" rpy="0 0 0" />
 		<geometry>
@@ -348,13 +348,13 @@
 	</visual>
 	</link>
 
-	<joint name="base_laser_joint" type="fixed">
-	<origin xyz="0 0 0.08" rpy="0 0 0" />
+	<joint name="laser" type="fixed">
+	<origin xyz="0.290 0.0 0.640" rpy="0 0 0" />
 	<parent link="base_link"/>
-	<child link="laser_link" />
+	<child link="laser" />
 	</joint>
 
-	<gazebo reference="laser_link">
+	<!-- <gazebo reference="laser_link">
 	<material>Gazebo/Blue</material>
 	<turnGravityOff>false</turnGravityOff>
 	<sensor type="ray" name="laser_sensor">
@@ -381,12 +381,12 @@
 		<frameName>laser_link</frameName>
 		</plugin>
 	</sensor>
-	</gazebo>
+	</gazebo> -->
 
 	  
 	  
   <!-- PLANAR PLUGIN-->
-  <gazebo>
+  <!-- <gazebo>
     <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
@@ -394,7 +394,7 @@
       <odometryRate>20.0</odometryRate>
       <robotBaseFrame>base_footprint</robotBaseFrame>
     </plugin>
-  </gazebo>
+  </gazebo> -->
 
 <!-- stop copy  -->
   <!-- KINECT PLUGIN
@@ -441,15 +441,15 @@
   </gazebo> -->
 
   <!-- LIDAR PLUGIN -->   
-  <link name="cameraLeft_depth_link"></link>
+  <!-- <link name="kinect2_link"></link>
 
   <joint name="cameraLeft_depth_joint" type="fixed">
     <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708 "/>
     <parent link="kinect_camera_link"/>
-    <child link="cameraLeft_depth_link"/>
-  </joint>
+    <child link="kinect2_kink"/>
+  </joint> -->
 
-
+<!-- 
   <gazebo reference="kinect_camera_link">
   <sensor name="kinect_camera" type="depth">
     <update_rate>20</update_rate>
@@ -490,7 +490,7 @@
       <hackBaseline>0</hackBaseline>
     </plugin>
   </sensor>
-</gazebo>
+</gazebo> -->
 
 
 </robot>

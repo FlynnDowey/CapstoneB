@@ -6,7 +6,7 @@
   </include>
 
   <arg name="rate"  default="5"/>
-  <arg name="approx_sync" default="true" />
+  <arg name="approx_sync" default="false" />
   <arg name="rgbd_sync" default="true"/>
 
   <!-- Use same nodelet used by Kinect2 -->

@@ -1,9 +1,0 @@
-<!-- map_server.launch -->
-<launch >
-    <arg name="map_name" default="/newtestmap" />
-    <arg name="map_yaml_file" default="/home/ubuntu/CapstoneB/meeting/src/robot_base/maps/newtestmap.yaml" />
-
-    <node name="amcl_map_server" pkg="map_server" type="map_server" args="$(arg map_yaml_file)" >
-        <remap from="/map" to="$(arg map_name)" />
-    </node >
-</launch >

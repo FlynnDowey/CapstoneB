@@ -10,6 +10,8 @@
   <arg unless="$(arg localization)" name="rtabmap_args" default="-d"/>
 
   <!-- Turtlebot3 -->
+  <node pkg="tf" type="static_transform_publisher" name="static_transform_publisher" args="0 0 0 -1.5708 0 -1.5708 camera_link kinect2_link 100" />
+
   <group if="$(arg simulation)">
     <include file="$(find robot_base)/launch/healthbot.launch">
   </include>
@@ -19,12 +21,20 @@
     <include file="$(find robot_base)/launch/robot.launch"/>
   </group>
 
+    <!-- Kinect cloud to laser scan -->
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+      <remap from="image"       to="/kinect2/sd/image_depth"/>
+      <remap from="camera_info" to="/kinect2/sd/camera_info"/>
+      <remap from="scan"        to="/kinect_scan"/>
+      <param name="range_max" type="double" value="4"/>
+    </node>
+
 
   <group ns="rtabmap">
     <node pkg="rtabmap_sync" type="rgbd_sync" name="rgbd_sync" output="screen">
-      <remap from="rgb/image"         to="/kinect/color/image_raw"/>
-      <remap from="depth/image"         to="/kinect/depth/image_raw"/>
-      <remap from="rgb/camera_info"   to="/kinect/color/camera_info"/>
+      <remap from="rgb/image"         to="/kinect2/qhd/image_color_rect"/>
+      <remap from="depth/image"         to="/kinect2/qhd/image_depth_rect"/>
+      <remap from="rgb/camera_info"   to="/kinect2/qhd/camera_info"/>
     </node>
 
     <node name="rtabmap" pkg="rtabmap_slam" type="rtabmap" output="screen" args="$(arg rtabmap_args)">
@@ -66,7 +76,7 @@
       <param name="approx_sync"      type="bool"   value="true"/>
 
       <remap from="odom"            to="/odom"/>
-      <remap from="scan"            to="/scan"/>
+      <remap from="scan"            to="/kinect_scan"/>
     </node>
   </group>
 
