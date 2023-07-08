@@ -1,0 +1,4 @@
+base_local_planner: TebLocalPlannerROS
+shutdown_costmaps: false
+oscillation_timeout: 10.0
+planner_frequency: 5.0

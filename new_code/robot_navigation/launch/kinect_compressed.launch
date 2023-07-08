@@ -1,0 +1,38 @@
+<launch>
+  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
+    <arg name="depth_method" value="cpu" />
+    <arg name="base_name" value="kinect2" />
+    <arg name="publish_tf" value="true"/>
+  </include>
+
+  <arg name="rate"  default="5"/>
+  <arg name="approx_sync" default="false" />
+  <arg name="rgbd_sync" default="true"/>
+
+  <!-- Use same nodelet used by Kinect2 -->
+  <group ns="kinect2">
+    <node if="$(arg rgbd_sync)" pkg="nodelet" type="nodelet" name="rgbd_sync" args="load rtabmap_ros/rgbd_sync kinect2_nodelet_manager" output="screen">
+      <param name="compressed_rate"  type="double" value="$(arg rate)"/>
+      <param name="approx_sync"      type="bool"   value="$(arg approx_sync)"/>
+
+      <remap from="rgb/image"       to="qhd/image_color_rect"/>
+      <remap from="depth/image"     to="qhd/image_depth_rect"/>
+      <remap from="rgb/camera_info" to="qhd/camera_info"/>
+
+      <remap from="rgbd_image"      to="rgbd_image"/>
+    </node>
+
+    <node unless="$(arg rgbd_sync)" pkg="nodelet" type="nodelet" name="data_throttle" args="load rtabmap_ros/data_throttle kinect2_nodelet_manager" output="screen">
+      <param name="rate"         type="double" value="$(arg rate)"/>
+      <param name="approx_sync"  type="bool"   value="$(arg approx_sync)"/>
+
+      <remap from="rgb/image_in"       to="qhd/image_color_rect"/>
+      <remap from="depth/image_in"     to="qhd/image_depth_rect"/>
+      <remap from="rgb/camera_info_in" to="qhd/camera_info"/>
+
+      <remap from="rgb/image_out"       to="throttled/qhd/image_color_rect"/>
+      <remap from="depth/image_out"     to="throttled/qhd/image_depth_rect"/>
+      <remap from="rgb/camera_info_out" to="throttled/qhd/camera_info"/>
+    </node>
+  </group>      
+</launch>
