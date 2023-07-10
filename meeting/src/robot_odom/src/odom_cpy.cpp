@@ -1,5 +1,7 @@
 #include <nav_msgs/Odometry.h>
 #include <ros/ros.h>
+// #include <tf/transform_broadcaster.h>
+
 #include <std_msgs/Int32.h>
 
 double encoder0Pos = 0;
@@ -9,22 +11,22 @@ double encoder3Pos = 0;
 
 void encoder0Callback(const std_msgs::Int32::ConstPtr& msg)
 {
-    encoder0Pos = static_cast<double>(msg->data);
+    encoder0Pos = (double)msg->data;
 }
 
 void encoder1Callback(const std_msgs::Int32::ConstPtr& msg)
 {
-    encoder1Pos = static_cast<double>(msg->data);
+    encoder1Pos = (double)msg->data;
 }
 
 void encoder2Callback(const std_msgs::Int32::ConstPtr& msg)
 {
-    encoder2Pos = static_cast<double>(msg->data);
+    encoder2Pos = (double)msg->data;
 }
 
 void encoder3Callback(const std_msgs::Int32::ConstPtr& msg)
 {
-    encoder3Pos = static_cast<double>(msg->data);
+    encoder3Pos = (double)msg->data;
 }
 
 int main(int argc, char** argv)
@@ -32,7 +34,8 @@ int main(int argc, char** argv)
     ros::init(argc, argv, "odometry_publisher");
 
     ros::NodeHandle n;
-    ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 100);
+    ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("odom", 50);
+    // tf::TransformBroadcaster odom_broadcaster;
 
     ros::Subscriber sub_enc0 = n.subscribe("encoder0", 50, encoder0Callback);
     ros::Subscriber sub_enc1 = n.subscribe("encoder1", 50, encoder1Callback);
@@ -57,8 +60,18 @@ int main(int argc, char** argv)
     double encoder_resolution = 537.7; // encoder counts per revolution
     double wheelbase = 0.220 + 0.0185; // distance between wheels along the x-axis in meters
     double track = 0.120; // distance between wheels along the y-axis in meters
+    while (n.ok()) {
+          /*
+            Front
+          W1-------W2
+           |       |
+    Left   |   C   |   Right
+           |       |
+          W3-------W4
+             Back
+  */
 
-    while (ros::ok()) {
+
         ros::spinOnce();
 
         current_time = ros::Time::now();
@@ -90,11 +103,21 @@ int main(int argc, char** argv)
         th += vth * dt;
 
         // since all odometry is 6DOF we'll need a quaternion created from yaw
-        geometry_msgs::Quaternion odom_quat;
-        odom_quat.x = 0.0;
-        odom_quat.y = 0.0;
-        odom_quat.z = 0.0;
-        odom_quat.w = th;
+        geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(th);
+
+        // first, we'll publish the transform over tf
+        // geometry_msgs::TransformStamped odom_trans;
+        // odom_trans.header.stamp = current_time;
+        // odom_trans.header.frame_id = "odom";
+        // odom_trans.child_frame_id = "base_footprint";
+
+        // odom_trans.transform.translation.x = x;
+        // odom_trans.transform.translation.y = y;
+        // odom_trans.transform.translation.z = 0.0;
+        // odom_trans.transform.rotation = odom_quat;
+
+        // send the transform
+        // odom_broadcaster.sendTransform(odom_trans);
 
         // next, we'll publish the odometry message over ROS
         nav_msgs::Odometry odom;
@@ -119,6 +142,4 @@ int main(int argc, char** argv)
         last_time = current_time;
         r.sleep();
     }
-
-    return 0;
 }
