@@ -25,7 +25,7 @@ range_b_msg = Range()
 
 # Set common fields for Range messages
 header = rospy.Header()
-header.frame_id = 'ultrasonic_sensor'
+# header.frame_id = 'ultrasonic_sensor'
 
 range_min = 0.2  # Replace with the minimum range value of your ultrasonic sensor
 range_max = 4.0  # Replace with the maximum range value of your ultrasonic sensor
