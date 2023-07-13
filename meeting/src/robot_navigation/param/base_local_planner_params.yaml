@@ -17,13 +17,13 @@ TebLocalPlannerROS:
     
  # Robot
          
- max_vel_x: 0.05
- max_vel_x_backwards: 0.05
- max_vel_y: 0.05
- max_vel_theta: 0.07
- acc_lim_x: 0.5
- acc_lim_y: 0.2
- acc_lim_theta: 0.5
+ max_vel_x: 0.02
+ max_vel_x_backwards: 0.02
+ max_vel_y: 0.02
+ max_vel_theta: 0.04
+ acc_lim_x: 0.3
+ acc_lim_y: 0.3
+ acc_lim_theta: 0.6
  min_turning_radius: 0.0 # omni-drive robot (can turn on place!)
 
  footprint_model:
@@ -31,21 +31,21 @@ TebLocalPlannerROS:
 
  # GoalTolerance
     
- xy_goal_tolerance: 0.2
- yaw_goal_tolerance: 0.1
+ xy_goal_tolerance: 0.5
+ yaw_goal_tolerance: 0.3
  free_goal_vel: False
  complete_global_plan: True
     
  # Obstacles
     
- min_obstacle_dist: 0.9  # This value must also include our robot radius, since footprint_model is set to "point".
- inflation_dist: 1.5
+ min_obstacle_dist: 1.0  # This value must also include our robot radius, since footprint_model is set to "point".
+ inflation_dist: 1.5  
  include_costmap_obstacles: True
  costmap_obstacles_behind_robot_dist: 1.0
  obstacle_poses_affected: 15
  costmap_converter_plugin: ""
  costmap_converter_spin_thread: True
- costmap_converter_rate: 5
+ costmap_converter_rate: 4
 
  # Optimization
     
@@ -53,7 +53,7 @@ TebLocalPlannerROS:
  no_outer_iterations: 4
  optimization_activate: True
  optimization_verbose: False
- penalty_epsilon: 0.03
+ penalty_epsilon: 0.01
  obstacle_cost_exponent: 4
  weight_max_vel_x: 2
  weight_max_vel_y: 2
@@ -61,7 +61,7 @@ TebLocalPlannerROS:
  weight_acc_lim_x: 1
  weight_acc_lim_y: 1
  weight_acc_lim_theta: 1
- weight_kinematics_nh: 1 # WE HAVE A HOLONOMIC ROBOT, JUST ADD A SMALL PENALTY
+ weight_kinematics_nh: 10 # WE HAVE A HOLONOMIC ROBOT, JUST ADD A SMALL PENALTY
  weight_kinematics_forward_drive: 1
  weight_kinematics_turning_radius: 1
  weight_optimaltime: 1 # must be > 0

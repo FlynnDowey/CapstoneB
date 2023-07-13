@@ -99,7 +99,7 @@ int main(int argc, char** argv)
         // next, we'll publish the odometry message over ROS
         nav_msgs::Odometry odom;
         odom.header.stamp = current_time;
-        odom.header.frame_id = "odom";
+        // odom.header.frame_id;
 
         // set the position
         odom.pose.pose.position.x = x;
@@ -108,7 +108,7 @@ int main(int argc, char** argv)
         odom.pose.pose.orientation = odom_quat;
 
         // set the velocity
-        odom.child_frame_id = "base_footprint";
+        // odom.child_frame_id = "base_footprint";
         odom.twist.twist.linear.x = vx;
         odom.twist.twist.linear.y = vy;
         odom.twist.twist.angular.z = vth;

@@ -1,0 +1,25 @@
+<launch>
+    <include file="$(find robot_odom)/launch/fused.launch"/>
+
+    <!-- <node pkg="rtabmap_sync" type="rgbd_sync" name="rgbd_sync" output="screen">
+      <remap from="rgb/image"         to="/kinect2/qhd/image_color_rect"/>
+      <remap from="depth/image"         to="/kinect2/qhd/image_depth_rect"/>
+      <remap from="rgb/camera_info"   to="/kinect2/qhd/camera_info"/>
+      <param name="approx_sync"         type="bool"   value="true"/>
+      <param name="queue_size" value="20"/>
+    </node> -->
+
+    <node pkg="rtabmap_odom" type="rgbd_odometry" name="rgbd_odometry">
+        <remap from="odom" to="rtabmap/odom"/>
+        <param name="frame_id" value="base_footprint"/>
+        <remap from="rgb/image"         to="/kinect2/qhd/image_color_rect"/>
+        <remap from="depth/image"         to="/kinect2/qhd/image_depth_rect"/>
+        <remap from="rgb/camera_info"   to="/kinect2/qhd/camera_info"/>
+        <param name="approx_sync"         type="bool"   value="true"/>
+        <param name="queue_size" value="40"/>
+        <param name="odom_frame_id" value=""/>
+        <param name="publish_tf" value="false"/>
+        <param name="approx_sync"  type="bool"   value="true"/>
+        <param name="approx_sync_max_interval" value="0.01"/>
+    </node>
+</launch>

@@ -1,23 +1,17 @@
 <launch>
-    <!-- Kinect cloud to laser scan -->
-    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
-        <remap from="image"       to="/kinect2/qhd/image_depth_rect"/>
-        <remap from="camera_info" to="/kinect2/qhd/camera_info"/>
-        <remap from="scan"        to="/kinect_scan"/>
-        <param name="range_max" type="double" value="4"/>
+  <group ns="rtabmap">
+    <node pkg="rtabmap_odom" type="rgbd_odometry" name="rgbd_odometry" output="screen">
+      <remap from="rgb/image"       to="/kinect2/qhd/image_color_rect"/>
+      <remap from="depth/image"     to="/kinect2/qhd/image_depth_rect"/>
+      <remap from="rgb/camera_info" to="/kinect2/qhd/camera_info"/>
+      <remap from="rgbd_image"      to="rgbd_image"/> <!-- output -->
+      
+      <!-- Should be true for not synchronized camera topics 
+           (e.g., false for kinectv2, zed, realsense, true for xtion, kinect360)-->
+      <param name="approx_sync"       value="false"/> 
+      <param name="frame_id" value="base_footprint"/>
+      <param name="publish_tf" value="false"/>
+      
     </node>
-
-    <!-- SLAM -->
-    <group ns="rtabmap">
-        <include file="$(find rtabmap_ros)/launch/rtabmap.launch">
-            <arg name="frame_id" value="base_footprint"/>
-            <arg name="subscribe_scan" value="true"/>
-            <arg name="odom_topic" value="/odom"/>
-            <arg name="scan_topic" value="/kinect_scan"/>
-            <arg name="rgb_topic" value="/kinect2/qhd/image_color_rect"/>
-            <arg name="depth_topic" value="/kinect2/qhd/image_depth_rect"/>
-            <arg name="camera_info_topic" value="/kinect2/qhd/camera_info"/>
-            <arg name="queue_size" value="10"/>
-        </include>
-    </group>
+  </group>
 </launch>
