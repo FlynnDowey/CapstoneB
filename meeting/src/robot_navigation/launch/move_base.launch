@@ -1,7 +1,7 @@
 <launch>
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-        <!-- <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" /> -->
         <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+        <param name="recovery_behavior_enabled" value="true"/>
         <param name="odom_topic" value="odom_filtered" />
         <param name="controller_frequency" value="5"/>
         <rosparam file="$(find robot_navigation)/param/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
@@ -10,5 +10,9 @@
         <rosparam file="$(find robot_navigation)/param/global_costmap_params.yaml" command="load" /> 
         <rosparam file="$(find robot_navigation)/param/move_base_params.yaml" command="load" />
         <rosparam file="$(find robot_navigation)/param/base_local_planner_params.yaml" command="load" />
+        <param name="TrajectoryPlannerROS/acc_lim_th" value="0.05"/>
+        <param name="TrajectoryPlannerROS/max_rotational_vel" value="0.03"/>
+        <param name="TrajectoryPlannerROS/min_in_place_rotational_vel" value="0.03"/>
+
     </node>
 </launch> 

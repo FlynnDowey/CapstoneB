@@ -1,6 +1,6 @@
  <launch>
  <!-- Arguments -->
-  <arg name="map_file" default="$(find robot_navigation)/maps/newmap.yaml"/>
+  <arg name="map_file" default="$(find robot_navigation)/maps/mymap.yaml"/>
   <arg name="open_rviz" default="true"/>
   <arg name="simulation" default="false"/>
   <arg name="with_camera" default="true"/>
@@ -19,9 +19,9 @@
     <include file="$(find robot_base)/launch/healthbot.launch"/>
   </group>
 
-  <include file="$(find robot_odom)/launch/mega_fused.launch"/>
+  <include file="$(find robot_odom)/launch/fused.launch"/>
 
-
+ <!-- FOR RTABMAP UNCOMMENT -->
   <!-- <group ns="rtabmap">
     <node pkg="rtabmap_sync" type="rgbd_sync" name="rgbd_sync" output="screen">
       <remap from="rgb/image"         to="/kinect2/qhd/image_color_rect"/>
@@ -83,19 +83,20 @@
     </node>
   </group> -->
 
+  <!-- FOR GMAPPING AFTER A MAP HAS BEEN SAVED UNCOMMENT-->
   <!-- Map server -->
-  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/> 
 
   <!-- AMCL -->
-  <include file="$(find robot_navigation)/launch/amcl.launch"/>
+   <include file="$(find robot_navigation)/launch/amcl.launch"/> 
 
   <!-- move_base -->
-  <include file="$(find robot_navigation)/launch/move_base.launch">
-  </include>
+  <include file="$(find robot_navigation)/launch/move_base.launch"> 
+  </include> 
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find robot_navigation)/rviz/healthbot_navigation.rviz"/>
+          args="-d $(find robot_navigation)/hbot.rviz"/>
   </group>
 </launch>

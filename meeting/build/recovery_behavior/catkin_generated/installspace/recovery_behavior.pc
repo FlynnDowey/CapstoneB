@@ -1,0 +1,8 @@
+prefix=/home/bao/CapstoneB/meeting/install
+
+Name: recovery_behavior
+Description: Description of recovery_behavior
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

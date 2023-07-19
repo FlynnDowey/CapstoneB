@@ -17,9 +17,9 @@ TebLocalPlannerROS:
     
  # Robot
          
- max_vel_x: 0.02
+ max_vel_x: 0.03
  max_vel_x_backwards: 0.02
- max_vel_y: 0.02
+ max_vel_y: 0.03
  max_vel_theta: 0.04
  acc_lim_x: 0.3
  acc_lim_y: 0.3
@@ -32,14 +32,14 @@ TebLocalPlannerROS:
  # GoalTolerance
     
  xy_goal_tolerance: 0.5
- yaw_goal_tolerance: 0.3
+ yaw_goal_tolerance: 1.6
  free_goal_vel: False
  complete_global_plan: True
     
  # Obstacles
     
- min_obstacle_dist: 1.0  # This value must also include our robot radius, since footprint_model is set to "point".
- inflation_dist: 1.5  
+ min_obstacle_dist: 0.5  # This value must also include our robot radius, since footprint_model is set to "point".
+ inflation_dist: 0.6
  include_costmap_obstacles: True
  costmap_obstacles_behind_robot_dist: 1.0
  obstacle_poses_affected: 15
@@ -55,15 +55,15 @@ TebLocalPlannerROS:
  optimization_verbose: False
  penalty_epsilon: 0.01
  obstacle_cost_exponent: 4
- weight_max_vel_x: 2
- weight_max_vel_y: 2
- weight_max_vel_theta: 1
+ weight_max_vel_x: 100
+ weight_max_vel_y: 100
+ weight_max_vel_theta: 470
  weight_acc_lim_x: 1
  weight_acc_lim_y: 1
  weight_acc_lim_theta: 1
- weight_kinematics_nh: 10 # WE HAVE A HOLONOMIC ROBOT, JUST ADD A SMALL PENALTY
- weight_kinematics_forward_drive: 1
- weight_kinematics_turning_radius: 1
+ weight_kinematics_nh: 200 # WE HAVE A HOLONOMIC ROBOT, JUST ADD A SMALL PENALTY
+ weight_kinematics_forward_drive: 970
+ weight_kinematics_turning_radius: 20
  weight_optimaltime: 1 # must be > 0
  weight_shortest_path: 0
  weight_obstacle: 100
@@ -101,62 +101,8 @@ TebLocalPlannerROS:
  shrink_horizon_backup: True
  shrink_horizon_min_duration: 10
  oscillation_recovery: True
- oscillation_v_eps: 0.1
- oscillation_omega_eps: 0.1
+ oscillation_v_eps: 0.01 #**********
+ oscillation_omega_eps: 0.01 #changed this*******
  oscillation_recovery_min_duration: 10
  oscillation_filter_duration: 10
 
-
-# DWAPlannerROS:
-
-# # Robot Configuration Parameters
-#   max_vel_x: 0.05
-#   min_vel_x: -0.05
-
-#   max_vel_y: 0.05
-#   min_vel_y: -0.05
-
-# # The velocity when robot is moving in a straight line
-#   max_vel_trans:  0.03
-#   min_vel_trans:  -0.03
-
-#   max_vel_theta: 0.05
-#   min_vel_theta: 0.01
-
-#   acc_lim_x: 1.0
-#   acc_lim_y: 0.0
-#   acc_lim_theta: 1.0
-
-
-#   max_vel_theta: 0.05
-#   max_rotational_vel: 0.05
-#   min_in_place_rotational_vel: 0.05
-
-# # Goal Tolerance Parameters
-#   xy_goal_tolerance: 0.1
-#   yaw_goal_tolerance: 0.17
-#   latch_xy_goal_tolerance: false
-
-
-# # Forward Simulation Parameters
-#   sim_time: 1.5
-#   vx_samples: 20
-#   vy_samples: 0
-#   vth_samples: 40
-#   controller_frequency: 5.0
-
-# # Trajectory Scoring Parameters
-#   path_distance_bias: 32.0
-#   goal_distance_bias: 20.0
-#   occdist_scale: 0.02
-#   forward_point_distance: 0.325
-#   stop_time_buffer: 0.2
-#   scaling_speed: 0.25
-#   max_scaling_factor: 0.2
-
-# # Oscillation Prevention Parameters
-#   oscillation_reset_dist: 0.01
-
-# # Debugging
-#   publish_traj_pc : true
-#   publish_cost_grid_pc: true

@@ -1,0 +1,8 @@
+prefix=/home/bao/CapstoneB/meeting/devel
+
+Name: recovery_behavior
+Description: Description of recovery_behavior
+Version: 0.0.0
+Cflags: -I/home/bao/CapstoneB/meeting/src/recovery_behavior/include
+Libs: -L${prefix}/lib 
+Requires: 
